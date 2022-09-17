@@ -1,0 +1,121 @@
+%! Author = soheili
+%! Date = 9/16/2022
+
+% Preamble
+\documentclass[a4paper]{article}
+
+% Packages
+\linespread{1.5} % normal line space
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage[hscale=0.7,vscale=0.8]{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{cite}
+\usepackage[ruled,lined,linesnumbered]{algorithm2e}
+\usepackage[inline]{enumitem}
+\usepackage{subcaption}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+\usepackage{microtype}
+\usepackage{amsfonts}
+\usepackage{color}
+\DisableLigatures{encoding = *, family = *}
+
+% Our commands
+\newcommand{\remeet}{{\color{red} \dag}}
+\newcommand{\deadline}[1]{{\color{blue} \hfill{#1} }}
+
+
+% Document
+\begin{document}
+
+    \title{BioSeC: Bioinformatic Sequence Classification}
+    \author{Majid Soheili}
+    \maketitle
+
+    \section{Why}\label{sec:why}
+    High-throughput sequencing technology and powerful bioinformatics approaches are boosting genomic and metagenomic analysis.
+    This combination has led to an exponential increase in sequence data.
+    In 2022, more than 13 TeraByte sequence data was stored in the SRA database daily~\footnote{https://www.ncbi.nlm.nih.gov/sra/docs/sragrowth/}.
+    The accuracy of the categorization of sequence data uploaded in the SRA is reliant on the submitters.
+    The SRA curators aim to collect correct metadata on the sequences submitted;
+    nevertheless, annotations are not standardized, different methods are used to classify sequences submitted to databases.
+
+    There are two orthogonal approaches commonly used to explore the microbial universe:
+    \begin{enumerate*}[label=(\roman*)]
+        \item Amplicon, where a part of a single gene (usually the 16S gene) is amplified and sequenced.
+        \item Shotgun Metagenomics(random), where all the DNA is extracted and sequenced.
+    \end{enumerate*}
+    The main objective of this project is proposing a new method to classify the sequence file into four subcategories.
+    \begin{enumerate}
+        \item Amplicon Sequence:
+        \item Whole Genome Sequence (WGS), Meta-Genome
+        \item Isolated Genome
+        \item Single Amplified Genome(SAG)
+    \end{enumerate}
+
+    \section{How}\label{sec:how}
+    In this section, four major steps for achieving the goals are listed.
+    Each step is detailed by a deadline and a measurement.
+    Some steps required meeting for expertise marked with \remeet.
+
+    \begin{enumerate}
+        \item Definition: Getting familiar with the problem \deadline{01, October, 2022}
+        \item Preparing the training Dataset:
+        \item Extracting features: Different types of features will be extracted, and evaluating and pruning some of them seems to be necessary.
+        \item Developing a classification model: 
+        \item Test and evaluating machine learning model for detecting the sequence file.
+        \item Launch of online system to check data quality. \deadline{31, January, 2022}
+    \end{enumerate}
+
+    \begin{enumerate}
+        \item Definition: Getting familiar with the problem \deadline{01, October, 2022}
+        \begin{itemize}
+            \item Preparing the proper introduction of the problem.
+            \item Preparing the simple explanations for each target label, and the biological differentiation among them.
+        \end{itemize}
+        \item Review some published paper and methods.
+        \begin{itemize}
+            \item Some papers like these should be considered and reviewed~\cite[]{RF102}.
+        \end{itemize}
+        \item Accessing to Sequence files
+        \begin{enumerate}
+            \item Aim: The main idea is that we need to prepare a small subsample of the original sequence file instead of downloading and uncompressing the whole one.
+            \item Sampling method: We need a reliable method such that we can extract some spots randomly from the whole sequence file (1000 - 3000 spots of each sequence file).
+            \item Scalable subsampling: The proper approach should be multiprocessing or multithreading.
+        \end{enumerate}
+        \item Preparing the training Dataset:
+        \begin{enumerate}
+            \item We should prepare a reliable datasets, so we are going to get the sequences files from, JGI and SRA.\@
+            \item According to our estimation, the number of sequences that would be enough will be around 5 thousand in each type of sequence .
+            \item Removing the noise it will be necessary to the illumination of the outliers files.
+        \end{enumerate}
+        \item Cleaning the Dataset
+        \begin{enumerate}
+            \item Invalidity: Remove the sequence file includes small spots (less that 3000)
+            \item Outlier detection: For preparing more reliable training dataset removing some outlier should be necessary.
+        \end{enumerate} 
+        \item Extracting features: Different types of features will be extracted
+        \begin{enumerate}
+            \item Different type of features are introduced before like, Numerical mapping, genomic signal processing (GSP), Chaos game representation, Entropy, and Graphs~\cite{RF101}.
+            \item We should produce some features with different nature if they be possible.
+            \item After feature extraction, the feature selection seems to be necessary.
+        \end{enumerate}
+        \item Developing a classification model
+        \begin{enumerate}
+            \item The type of the classification model will relay on the type and number of features, but we believe that the using Ensemble method should be useful.
+            \item Using the 5-fold cross validation for automatic evaluation. (measures: Accuracy and Geometry-Mean)
+        \end{enumerate}
+        \item Beta Test and evaluating machine learning model for detecting the sequence file type.
+        \begin{}
+        \end{}
+        \item Implementing the web interface to use for others.
+        \item Launch of online system to check data quality. \deadline{31, January, 2022}
+    \end{enumerate}
+
+    \bibliography{main}
+    \bibliographystyle{IEEEtr}
+
+\end{document}
