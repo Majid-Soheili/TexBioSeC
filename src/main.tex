@@ -62,30 +62,30 @@
     Some steps required meeting for expertise marked with \remeet.
 
     \begin{enumerate}
-        \item Definition: Getting familiar with the problem \deadline{26, September, 2022}
+        \item Definition: Getting familiar with the problem %\deadline{26, September, 2022}
         \begin{enumerate}
-            \item Measurement: Should be confirmed by expert.
+            \item Measurement: Should be confirmed by expert\remeet.
         \end{enumerate}
-        \item Preparing the training Dataset:\deadline{17, October, 2022}
+        \item Preparing the training Dataset:%\deadline{17, October, 2022}
         \begin{enumerate}
-            \item Measurement: The method should be confirmed by expert.
+            \item Measurement: The method should be confirmed by expert\remeet.
             \item The label of sequence files should be same in both datasets JGI\footnote{https://jgi.doe.gov/} and SRA\footnote{https://www.ncbi.nlm.nih.gov/sra}.\@
         \end{enumerate}
-        \item Extracting features: Different types of features will be extracted. \deadline{31, October, 2022}
+        \item Extracting features: Different types of features will be extracted. %\deadline{31, October, 2022}
         \begin{enumerate}
             \item Measurement: Features selection methods for evaluating the features should be used.
         \end{enumerate}
-        \item Developing a classification model: \deadline{14, November, 2022}
+        \item Developing a classification model: %\deadline{14, November, 2022}
         \begin{enumerate}
             \item Measurement: Total Accuracy and Geometric-Mean by using 5-fold cross validation.
         \end{enumerate}
-        \item Submitting Manuscript: \deadline{14, December, 2022}
+        \item Submitting Manuscript: %\deadline{14, December, 2022}
         \begin{enumerate}
-            \item Measurement: Confirmed by supervisor.
+            \item Measurement: Confirmed by supervisor\remeet.
         \end{enumerate}
-        \item Launch of online system to check data quality. \deadline{31, January, 2022}
+        \item Launch of online system to check data quality. %\deadline{31, January, 2022}
         \begin{enumerate}
-            \item Measurement: Getting feedback from experts.
+            \item Measurement: Getting feedback from experts\remeet.
         \end{enumerate}
     \end{enumerate}
 
@@ -107,12 +107,12 @@
             \item Subsampling method: We need a reliable method such that we can extract some spots randomly from the whole sequence file (1000 - 3000 spots of each sequence file).
             \item Scalable subsampling: The proper approach should be multiprocessing or multithreading.
         \end{itemize}
-        \item Preparing the training Dataset:\deadline{17, October, 2022}
+        \item Preparing the training Dataset:\deadline{10, October, 2022}
         \begin{itemize}
             \item We should prepare a reliable dataset, so we are going to get the sequence files from JGI and SRA.\@
             \item We believe that for making a good learning model, the number of sequence samples in the training dataset should be around five thousand for each type of sequence.
         \end{itemize}
-        \item Cleaning the Dataset
+        \item Cleaning the Dataset. \deadline{17, October, 2022}
         \begin{itemize}
             \item Invalidity: Removing the sequence file with insufficient numbers of spots (less than 3000).
             \item Outlier detection: For preparing a more reliable training dataset removing outliers should be necessary.
@@ -125,20 +125,20 @@
             Owing to subsampling, some feature extraction methods can be impossible.
             \item After feature extraction, the feature selection seems to be necessary because some features will be redundant and irrelevant.
         \end{itemize}
-        \item Developing a classification model.  \deadline{14, November, 2022}
+        \item Developing a classification model.\deadline{14, November, 2022}
         \begin{itemize}
             \item The type of the classification model will relay on the type and number of features, but we believe that the using Ensemble method should be useful.
             \item Using the 5-fold cross validation approach for automatic evaluation should be reasonable.
             \item Measures: Accuracy and Geometry-Mean
         \end{itemize}
-        \item Preparing the draft version of the manuscript
+        \item Preparing the draft version of the manuscript \deadline{28, November, 2022}
         \begin{itemize}
             \item Targeting an specific journal.
             \item Writing manuscript according to the journal standard.
         \end{itemize}
         \item Review and Submitting the manuscript.\deadline{14, December, 2022}
-        \item Implementing the web interface to use for others.
-        \item Beta Test and evaluating machine learning model for detecting the sequence file type.
+        \item Implementing the web interface to use for others. \deadline{20, January, 2022}
+        \item Beta Test and evaluating machine learning model. \deadline{24, January, 2022}
         \begin{itemize}
             \item Giving accessibility to some experts for evaluating the model and taking feedback in a real scenario.
         \end{itemize}
@@ -148,7 +148,7 @@
 
     \section{Mapping to TA2 Meetings}\label{sec:ta2}
     In this section, for each TA2 meeting in the NFDI project, an milestone will be allocated.
-    We assume that on the first week of each month, the TA2 meetings will happen regularly.
+    We assume that on the first week of each month, the TA2 meetings will hold regularly.
     In each meeting will talk about the result obtained and the next milestone.
     Table~\ref{tab:ta2} the illustrates some information of the meetings.
     \begin{table}[h]\label{tab:ta2}
