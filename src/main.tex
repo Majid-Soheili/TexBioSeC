@@ -107,7 +107,7 @@
             \item Subsampling method: We need a reliable method such that we can extract some spots randomly from the whole sequence file (1000 - 3000 spots of each sequence file).
             \item Scalable subsampling: The proper approach should be multiprocessing or multithreading.
         \end{itemize}
-        \item Preparing the training Dataset:
+        \item Preparing the training Dataset:\deadline{17, October, 2022}
         \begin{itemize}
             \item We should prepare a reliable dataset, so we are going to get the sequence files from JGI and SRA.\@
             \item We believe that for making a good learning model, the number of sequence samples in the training dataset should be around 5 thousand for each type of sequence.
@@ -117,7 +117,7 @@
             \item Invalidity: Removing the sequence file with insufficient numbers of spots (less than 3000).
             \item Outlier detection: For preparing a more reliable training dataset removing outliers should be necessary.
         \end{itemize}
-        \item Extracting features: Different types of features will be extracted.
+        \item Extracting features: Different types of features will be extracted. \deadline{31, October, 2022}
         \begin{itemize}
             \item Different types of features introduced in the literature should be used.
             For example, Numerical mapping, genomic signal processing (GSP), Chaos game representation, Entropy, and Graphs~\cite{RF101}.
@@ -125,20 +125,21 @@
             Owing to subsampling, some feature extraction methods can be impossible.
             \item After feature extraction, the feature selection seems to be necessary because some features will be redundant and irrelevant.
         \end{itemize}
-        \item Developing a classification model.
+        \item Developing a classification model.  \deadline{14, November, 2022}
         \begin{itemize}
             \item The type of the classification model will relay on the type and number of features, but we believe that the using Ensemble method should be useful.
             \item Using the 5-fold cross validation approach for automatic evaluation should be reasonable.
             \item Measures: Accuracy and Geometry-Mean
         \end{itemize}
+        \item Preparing the draft version of the manuscript
+        \item Review and Submitting the manuscript.\deadline{14, December, 2022}
         \item Implementing the web interface to use for others.
         \item Beta Test and evaluating machine learning model for detecting the sequence file type.
         \begin{itemize}
-            \item
+            \item Giving accessibility to some experts for evaluating the model and taking feedback in a real scenario.
         \end{itemize}
         \item Launch of online system to check data quality. \deadline{31, January, 2022}
-        \item Preparing the draft version of the manuscript
-        \item Review and Submitting the manuscript.
+
     \end{enumerate}
 
     \section{Mapping to TA2 Meetings}\label{sec:ta2}
