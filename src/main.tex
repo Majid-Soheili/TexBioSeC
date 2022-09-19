@@ -42,18 +42,18 @@
     The accuracy of the categorization of sequence data uploaded in the SRA is reliant on the submitters.
     The SRA curators aim to collect correct metadata on the sequences submitted;
     nevertheless, annotations are not standardized, different methods are used to classify sequences submitted to databases.
-
-    There are two orthogonal approaches commonly used to explore the microbial universe:
-    \begin{enumerate*}[label=(\roman*)]
-        \item Amplicon, where a part of a single gene (usually the 16S gene) is amplified and sequenced.
-        \item Shotgun Metagenomics(random), where all the DNA is extracted and sequenced.
-    \end{enumerate*}
-    The main objective of this project is proposing a new method to classify the sequence file into four subcategories.
+    The BioSeC project is an effort to check quality of the sequence file, and it going to detect the type of the sequence file according to the context of the file instead of depending on the metadata configured by submitters.
+    The main objective of this project can be listed as:
     \begin{enumerate}
-        \item Amplicon Sequence:
-        \item Whole Genome Sequence (WGS), Meta-Genome
-        \item Isolated Genome
-        \item Single Amplified Genome(SAG)
+        \item Classify the sequence file into four categories:
+        \begin{enumerate}
+          \item Amplicon Sequence:
+          \item Whole Genome Sequence~(WGS), Meta-Genome
+          \item Isolated Genome
+          \item Single Amplified Genome~(SAG)
+        \end{enumerate}
+        \item The learning model should be able to cope with large-scale data training.
+        \item The scalability and distributed approaches are welcomed in dealing with voluminous sequence files submitted to the SRA database formerly.
     \end{enumerate}
 
     \section{How}\label{sec:how}
@@ -62,58 +62,102 @@
     Some steps required meeting for expertise marked with \remeet.
 
     \begin{enumerate}
-        \item Definition: Getting familiar with the problem \deadline{01, October, 2022}
-        \item Preparing the training Dataset:
-        \item Extracting features: Different types of features will be extracted, and evaluating and pruning some of them seems to be necessary.
-        \item Developing a classification model: 
-        \item Test and evaluating machine learning model for detecting the sequence file.
+        \item Definition: Getting familiar with the problem \deadline{25, September, 2022}
+        \begin{enumerate}
+            \item Measurement: Should be confirmed by expert.
+        \end{enumerate}
+        \item Preparing the training Dataset:\deadline{17, October, 2022}
+        \begin{enumerate}
+            \item Measurement: The method should be confirmed by expert.
+            \item The label of sequence files should be same in both datasets JGI\footnote{https://jgi.doe.gov/} and SRA\footnote{https://www.ncbi.nlm.nih.gov/sra}.\@
+        \end{enumerate}
+        \item Extracting features: Different types of features will be extracted. \deadline{31, October, 2022}
+        \begin{enumerate}
+            \item Measurement: Features selection methods for evaluating the features should be used.
+        \end{enumerate}
+        \item Developing a classification model: \deadline{14, November, 2022}
+        \begin{enumerate}
+            \item Measurement: Total Accuracy and Geometric-Mean by using 5-fold cross validation.
+        \end{enumerate}
+        \item Submitting Manuscript: \deadline{14, December, 2022}
+        \begin{enumerate}
+            \item Measurement: Confirmed by supervisor.
+        \end{enumerate}
         \item Launch of online system to check data quality. \deadline{31, January, 2022}
+        \begin{enumerate}
+            \item Measurement: Getting feedback from experts.
+        \end{enumerate}
     \end{enumerate}
 
+    \section{What}\label{sec:what}
     \begin{enumerate}
-        \item Definition: Getting familiar with the problem \deadline{01, October, 2022}
+        \item Definition: Getting familiar with the main objective \deadline{01, October, 2022}
         \begin{itemize}
-            \item Preparing the proper introduction of the problem.
+            \item Preparing a proper introduction of the issue and the idea of solution .
             \item Preparing the simple explanations for each target label, and the biological differentiation among them.
         \end{itemize}
         \item Review some published paper and methods.
         \begin{itemize}
+            \item Feature Extraction papers.
             \item Some papers like these should be considered and reviewed~\cite[]{RF102}.
         \end{itemize}
-        \item Accessing to Sequence files
-        \begin{enumerate}
-            \item Aim: The main idea is that we need to prepare a small subsample of the original sequence file instead of downloading and uncompressing the whole one.
-            \item Sampling method: We need a reliable method such that we can extract some spots randomly from the whole sequence file (1000 - 3000 spots of each sequence file).
+        \item Accessing to sequence files
+        \begin{itemize}
+            \item Objective: The main idea is that we need to prepare a small subsample of the original sequence file instead of downloading and uncompressing the whole one.
+            \item Subsampling method: We need a reliable method such that we can extract some spots randomly from the whole sequence file (1000 - 3000 spots of each sequence file).
             \item Scalable subsampling: The proper approach should be multiprocessing or multithreading.
-        \end{enumerate}
+        \end{itemize}
         \item Preparing the training Dataset:
-        \begin{enumerate}
-            \item We should prepare a reliable datasets, so we are going to get the sequences files from, JGI and SRA.\@
-            \item According to our estimation, the number of sequences that would be enough will be around 5 thousand in each type of sequence .
-            \item Removing the noise it will be necessary to the illumination of the outliers files.
-        \end{enumerate}
+        \begin{itemize}
+            \item We should prepare a reliable dataset, so we are going to get the sequence files from JGI and SRA.\@
+            \item We believe that for making a good learning model, the number of sequence samples in the training dataset should be around 5 thousand for each type of sequence.
+        \end{itemize}
         \item Cleaning the Dataset
-        \begin{enumerate}
-            \item Invalidity: Remove the sequence file includes small spots (less that 3000)
-            \item Outlier detection: For preparing more reliable training dataset removing some outlier should be necessary.
-        \end{enumerate} 
-        \item Extracting features: Different types of features will be extracted
-        \begin{enumerate}
-            \item Different type of features are introduced before like, Numerical mapping, genomic signal processing (GSP), Chaos game representation, Entropy, and Graphs~\cite{RF101}.
-            \item We should produce some features with different nature if they be possible.
-            \item After feature extraction, the feature selection seems to be necessary.
-        \end{enumerate}
-        \item Developing a classification model
-        \begin{enumerate}
+        \begin{itemize}
+            \item Invalidity: Removing the sequence file with insufficient numbers of spots (less than 3000).
+            \item Outlier detection: For preparing a more reliable training dataset removing outliers should be necessary.
+        \end{itemize}
+        \item Extracting features: Different types of features will be extracted.
+        \begin{itemize}
+            \item Different types of features introduced in the literature should be used.
+            For example, Numerical mapping, genomic signal processing (GSP), Chaos game representation, Entropy, and Graphs~\cite{RF101}.
+            \item Various features with different natures should be extract.
+            Owing to subsampling, some feature extraction methods can be impossible.
+            \item After feature extraction, the feature selection seems to be necessary because some features will be redundant and irrelevant.
+        \end{itemize}
+        \item Developing a classification model.
+        \begin{itemize}
             \item The type of the classification model will relay on the type and number of features, but we believe that the using Ensemble method should be useful.
-            \item Using the 5-fold cross validation for automatic evaluation. (measures: Accuracy and Geometry-Mean)
-        \end{enumerate}
-        \item Beta Test and evaluating machine learning model for detecting the sequence file type.
-        \begin{}
-        \end{}
+            \item Using the 5-fold cross validation approach for automatic evaluation should be reasonable.
+            \item Measures: Accuracy and Geometry-Mean
+        \end{itemize}
         \item Implementing the web interface to use for others.
+        \item Beta Test and evaluating machine learning model for detecting the sequence file type.
+        \begin{itemize}
+            \item
+        \end{itemize}
         \item Launch of online system to check data quality. \deadline{31, January, 2022}
+        \item Preparing the draft version of the manuscript
+        \item Review and Submitting the manuscript.
     \end{enumerate}
+
+    \section{Mapping to TA2 Meetings}\label{sec:ta2}
+    In this section, for each TA2 meeting in the NFDI project, an milestone will be allocated.
+    We assume that on the first week of each month, the TA2 meetings will happen regularly.
+    In each meeting will talk about the result obtained and the next milestone.
+    Table~\ref{tab:ta2} the illustrates some information of the meetings.
+    \begin{table}[h]\label{tab:ta2}
+        \centering
+        \caption{TA2 meeting topics}
+        \begin{tabular}{lll}
+            \# & Topic                                             & Date       \\ \hline
+            1  & Issues and main Idea                              & 03.10.2022 \\
+            2  & Preparing training dataset and Feature extraction & 02.11.2022 \\
+            3  & Classification Model                              & 02.12.2022 \\
+            4  & Final Result and Manuscript                       & 02.01.2023 \\
+            5  & Online System                                     & 01.02.2023 \\ \hline
+        \end{tabular}
+    \end{table}
 
     \bibliography{main}
     \bibliographystyle{IEEEtr}
